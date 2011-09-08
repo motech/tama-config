@@ -1,7 +1,8 @@
 node default {
  #include git
  #include hudson
- include activemq
+ #include activemq
+ include couchdb
 }
 
 import "dev"
