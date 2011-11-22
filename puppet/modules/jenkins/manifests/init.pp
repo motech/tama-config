@@ -1,6 +1,6 @@
 class jenkins {
   include repos::jenkins
-  include java::sun_jdk
+  include java
 
   package { "jenkins":
     ensure  =>  "present",
