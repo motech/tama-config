@@ -1,9 +1,11 @@
 class activemq {
 
-  $tar_source = '/root/tama-config/puppet/modules/activemq/files/apache-activemq-5.5.0-bin.tar.gz'
+  file { "/tmp/activemq.tar.gz":
+    source => "puppet:///modules/activemq/apache-activemq-5.5.0-bin.tar.gz",
+  }
 
   exec { "activemq_untar":
-    command => "tar xf ${tar_source}",
+    command => "tar xfz /tmp/activemq.tar.gz",
     cwd     => "/opt",
     creates => "/opt/apache-activemq-5.5.0",
     path    => ["/bin",],
@@ -17,20 +19,18 @@ class activemq {
     creates => '/opt/activemq',
   }
 
-  file { "/etc/init.d/activemq":
-    owner  => root,
-    group  => root,
-    mode   => 755,
-    #source => "puppet://${servername}/activemq/activemq-init.d",
-    source => "/root/tama-config/puppet/modules/activemq/files/activemq-init.d",
-    require => Exec["activemq_untar"],
+  exec { "link_startup" : 
+    command => "/bin/ln -sf /opt/activemq/bin/activemq /etc/init.d/activemq",
+    user => "root",
+    require => Exec["activemq_untar"], 
   }
 
+
   service { "activemq":
+    path       => "/opt/activemq/bin/activemq",
     ensure     => running,
-    enable     => true,
     hasrestart => true,
     hasstatus  => true,
-    require => File["/etc/init.d/activemq"],
+    require => Exec["rename_activemq_dir"],
   }
 }
