@@ -1,12 +1,12 @@
 class java {
-  exec { "sun_jre_6":
+  exec { "sun_jdk_6":
     path => ["/usr/bin","/bin","/usr/sbin","/sbin"],
     cwd => "/usr/local",
-    command => "wget http://download.oracle.com/otn-pub/java/jdk/6u27-b07/jre-6u27-linux-i586.bin -O jre6.bin \
-		&& chmod +x jre6.bin  \
-		&& ./jre6.bin \
-		&& ln -s /usr/local/jre1.6.0_27/bin/java /usr/bin/java \
-		&& rm -f jre6.bin",
-    creates => "/usr/local/jre1.6.0_27/bin/java",
+    command => "wget http://download.oracle.com/otn-pub/java/jdk/6u29-b11/jdk-6u29-linux-x64-rpm.bin -O jdk6.bin \
+		&& chmod +x jdk6.bin  \
+		&& ./jdk6.bin \
+		&& ln -s /usr/local/jdk1.6.0_29/bin/java /usr/bin/java \
+		&& rm -f jdk6.bin",
+    creates => "/usr/local/jdk1.6.0_29/bin/java",
   }
 }
