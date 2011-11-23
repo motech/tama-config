@@ -2,6 +2,6 @@ class git {
   include repos::epel
   package { "git":
     ensure  =>  "present",
-    require => [Package["epel-release-5-4"]],
+    require => [Package["epel-release.noarch"]],
   }
 }
