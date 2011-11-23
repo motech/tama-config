@@ -1,8 +1,9 @@
 class tomcat {
-
+  include users
+  
   file { "/tmp/apache-tomcat-7.0.22.tar.gz":
     source => "puppet:///modules/tomcat/apache-tomcat-7.0.22.tar.gz",
-    require => [User["tamasuper"],Exec["sun_jdk_6"]],
+    require => [User["tamasuper"],Exec["sun_jdk_6"]]
   }
 
   exec { "tomcat_untar":
@@ -18,15 +19,10 @@ class tomcat {
   	source => "puppet:///modules/tomcat/tomcat.initd",
   	require => Exec["tomcat_untar"],
   }
-  user { 'tamasuper':
-      ensure     => present,
-      shell      => '/bin/bash',
-      home       => '/home/tamasuper',
-  }
+
   service { "tomcat":
   	ensure => "running",
   	hasstatus => false,
   	require => File["/etc/init.d/tomcat"],
   }
 }
-
