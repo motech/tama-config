@@ -17,11 +17,14 @@ class tomcat {
   
   file { "/etc/init.d/tomcat" :
   	source => "puppet:///modules/tomcat/tomcat.initd",
+  	mode   =>  777,
+  	group  => "root",
+  	owner  => "root",
   	require => Exec["tomcat_untar"],
   }
 
   service { "tomcat":
-  	ensure => "running",
+  	ensure => running,
   	hasstatus => false,
   	require => File["/etc/init.d/tomcat"],
   }
