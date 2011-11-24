@@ -2,6 +2,7 @@ node default {
  include java
  include git
  include httpd
+ include ant
  include activemq
  include couchdb
  include mysql
