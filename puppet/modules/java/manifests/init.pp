@@ -12,7 +12,7 @@ class java {
     user => "root"
   }
   file { "/etc/environment" :
-  	content => "JAVA_HOME=/usr/local/jdk1.6.0_29" 
+  	content => "JAVA_HOME=/usr/java/jdk1.6.0_29/" 
   }
 }
 
