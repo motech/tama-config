@@ -3,12 +3,13 @@ node default {
  include git
  include httpd
  include ant
- include activemq
  include couchdb
  include mysql
  include mysqlserver
+ include activemq
  include tomcat
  include duplicity
+ include motechquartz
 }
 
 import "dev"
