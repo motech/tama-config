@@ -6,8 +6,7 @@ class java {
   exec { "sun_jdk_6":
     path => ["/usr/bin","/bin","/usr/sbin","/sbin"],
     cwd => "/tmp",
-    command => "echo |/tmp/jdk6.bin >/tmp/log.txt 2>&1 ;\
-		rm /tmp/jdk6.bin",
+    command => "echo |/tmp/jdk6.bin >/tmp/log.txt 2>&1 ; rm /tmp/jdk6.bin",
     require => File["/tmp/jdk6.bin"],
     user => "root"
   }

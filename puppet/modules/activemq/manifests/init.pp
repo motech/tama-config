@@ -7,6 +7,7 @@ class activemq {
 
   exec { "activemq_untar":
     command => "tar xfz /tmp/activemq.tar.gz",
+    user => "tamasuper",
     cwd     => "/home/tamasuper",
     creates => "/home/tamasuper/apache-activemq-5.5.1",
     path    => ["/bin",],
