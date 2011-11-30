@@ -38,7 +38,7 @@
 # ------------------------------------------------------------------------
 # CONFIGURATION
 ACTIVEMQ_CONFIGS="/etc/default/activemq $HOME/.activemqrc"
-
+ACTIVEMQ_HOME=/home/tamasuper/apache-activemq-5.5.1
 # Backup invocation parameters
 COMMANDLINE_ARGS="$@"
 
