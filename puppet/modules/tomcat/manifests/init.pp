@@ -23,9 +23,16 @@ class tomcat {
   	require => Exec["tomcat_untar"],
   }
 
+  exec { "installtomcatservice" :
+  	command => "/sbin/chkconfig --add tomcat",
+  	user => "root", 
+  	require => File["/etc/init.d/tomcat"],
+  }
+  
   service { "tomcat":
   	ensure => running,
+  	enable => true,
   	hasstatus => false,
-  	require => File["/etc/init.d/tomcat"],
+  	require => Exec["installtomcatservice"],
   }
 }

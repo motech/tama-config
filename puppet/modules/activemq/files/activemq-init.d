@@ -1,5 +1,4 @@
 #!/bin/sh 
-# chkconfig 2345 05 95
 # ------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -28,6 +27,14 @@
 # Authors:
 # Marc Schoechlin <ms@256bit.org>
 
+### BEGIN INIT INFO
+# Provides: activemq
+# Required-Start: mysqld
+# Defalt-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Description: Foo init script
+### END INIT INFO
+
 # ------------------------------------------------------------------------
 # CONFIGURATION
 ACTIVEMQ_CONFIGS="/etc/default/activemq $HOME/.activemqrc"
@@ -49,9 +56,6 @@ fi
 # This file overwrites the predefined settings of the sysv init-script
 #
 # Active MQ installation dir
-
-ACTIVEMQ_HOME=/opt/activemq
-
 if [ -z "$ACTIVEMQ_HOME" ] ; then
   # try to find ACTIVEMQ
   if [ -d /opt/activemq ] ; then
@@ -118,7 +122,7 @@ fi
 JAVACMD="auto"
 
 # Configure a user with non root priviledges, if no user is specified do not change user
-ACTIVEMQ_USER=""
+ACTIVEMQ_USER="tamasuper"
 
 # Set jvm memory configuration
 ACTIVEMQ_OPTS_MEMORY="-Xms256M -Xmx256M"

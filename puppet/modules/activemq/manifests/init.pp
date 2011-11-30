@@ -13,19 +13,26 @@ class activemq {
     path    => ["/bin",],
   }
   
-
-  exec { "link_startup" : 
-    command => "/bin/ln -sf /home/tamasuper/apache-activemq-5.5.1/bin/activemq /etc/init.d/activemq",
-    user => "root",
-    require => Exec["activemq_untar"], 
+  
+  file { "/etc/init.d/activemq" :
+  	source => "puppet:///modules/activemq/activemq-init.d",
+  	mode   =>  777,
+  	group  => "root",
+  	owner  => "root",
+  	require => Exec["activemq_untar"], 
+  }
+  
+  exec { "installservice" :
+  	command => "/sbin/chkconfig --add activemq",
+  	user => "root", 
+  	require => File["/etc/init.d/activemq"],
   }
 
 
   service { "activemq":
     path       => "/home/tamasuper/apache-activemq-5.5.1/bin/activemq",
     ensure     => running,
-    hasrestart => true,
-    hasstatus  => true,
-    require => Exec["link_startup"],
+    enable     => true,
+    require => Exec["installservice"],
   }
 }

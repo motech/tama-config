@@ -5,6 +5,13 @@
 # chkconfig: 2345 55 25
 # description: SixSigns Tomcat server
 #
+### BEGIN INIT INFO
+# Provides: tomcat
+# Required-Start: couchdb mysqld activemq
+# Defalt-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Description: Foo init script
+### END INIT INFO
 
 # Source function library.
 source /etc/environment
